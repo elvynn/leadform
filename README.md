@@ -1,7 +1,8 @@
-# Getting Started with Create React App
+# About
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+A Boilerplate form for gathering leads, send mail with phpmailer and save them to a firebase server.
+Build on react with hooks and react-hook-form library.
+Created validation for most common use cases.
 ## Available Scripts
 
 In the project directory, you can run:
