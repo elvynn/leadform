@@ -1,3 +1,7 @@
+:root {
+    --error-color: rgb(216, 39, 54);
+    --main-color: rgb(27, 88, 193);
+  }
 .formGroup{
     margin-bottom: 1rem;
     display: flex;
@@ -6,7 +10,7 @@
 }
 .formGroup input, .formGroup  select{
     padding: 0.5rem;
-    width: 250px;
+    width: 300px;
     max-width: 100%;
     background-color: transparent;
     border: 2px solid #ccc;
@@ -29,15 +33,37 @@
     width: 150px;
 }
 .formGroup.error input{
-    border: 2px solid rgb(181, 31, 44);
+    border: 2px solid var(--error-color);
 }
 .formGroup.error input:focus{
     background: rgba(255, 247, 247, 0.844);
     box-shadow: 0 0 0 0.25rem rgba(249, 188, 188, 0.886) !important;
-    border: 2px solid rgb(181, 31, 44);
+    border: 2px solid var(--error-color);
     outline: rgb(255, 79, 79);
 }
 .error .errorMessage{
-    color: rgb(181, 31, 44);
+    color: var(--error-color);
     display: block;
+}
+.btn{
+    width: 100%;
+    display: block;
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+    color: white;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+.btn:hover{
+    border-color: rgb(44, 103, 232);
+    background-color: rgb(44, 103, 232);
+    box-shadow: 0 0 25px rgba(205, 205, 205, 0.886) !important;
+}
+
+.btn:focus{
+    border-color: rgb(16, 52, 130);
+    background-color: rgb(16, 52, 130);
 }

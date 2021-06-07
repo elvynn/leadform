@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import InputMask from "react-input-mask";
 
 
@@ -10,15 +11,22 @@ const perfectures = ['北海道', '青森県', '岩手県', '宮城県', '秋田
 const Form = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-      console.log(data)
       //Send data to server
-      
-      //Send email
+
+      //on ok callback Send email
+      axios.post(`http://localhost:8888/leadform/public/mailform/mailform.php`, data)
+      .then(res => {
+        if(res.data){
+          console.log(res.data);
+          //change to thanks page, remove loading state
+        }else{
+          console.log("error");
+          //Error feedback
+        }
+      })
     };
     
-    /* useEffect(() => {
-      
-    }, []); */
+  
     return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* Name */}
@@ -64,7 +72,8 @@ const Form = () => {
           <InputMask
             id="tel"
             mask="999-9999-9999" 
-            maskPlaceholder="000-0000-0000"
+            maskPlaceholder="___-____-____"
+            placeholder="000-0000-0000"
             {...register("tel", { 
               required: true, 
               maxLength: 13,
@@ -100,7 +109,7 @@ const Form = () => {
         </select>
       </div>
 
-      {/* aceptation */}
+      {/* terms aceptation */}
       <div className={ !errors.aceptation ? styles.formGroup : [styles.formGroup, styles.error].join(' ') }>
         <input 
           id="terms"
@@ -111,7 +120,7 @@ const Form = () => {
           <label　htmlFor="terms">使用規約同意します。</label>
         {errors.aceptation && errors.aceptation.type === "required" && <span role="alert" className={styles.errorMessage}>You must accept the terms and conditions</span>}
       </div>
-      <input type="submit" />
+      <input className={styles.btn} type="submit" />
     </form>
   );
 };
